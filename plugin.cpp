@@ -416,7 +416,10 @@ ScriptablePluginObject::HasMethod(NPIdentifier name)
 	{
 		return true;
 	}
-
+	if (!strcmp("SfxExec", pFunc))
+	{
+		return true;
+	}
 	return false;
 }
 
@@ -554,7 +557,15 @@ ScriptablePluginObject::Invoke(NPIdentifier name, const NPVariant *args, uint32_
 		INT32_TO_NPVARIANT(sum, *result);
 		return true;
 	}
+	if (!strcmp("SfxExec", pFunc)) {
 
+		CNPString cmdLine(args[1].value.stringValue);
+		
+		::WinExec(cmdLine.operator LPCSTR(), 0);
+		::InvalidateRect(m_hWnd, 0, true);
+		INT32_TO_NPVARIANT(0, *result);
+		return true;
+	}
   if (name == sFoo_id) {
     printf ("foo called!\n");
 

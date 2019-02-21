@@ -39,6 +39,7 @@
       <Filter>Quelldateien</Filter>
     </None>
     <None Include="Remarks.txt" />
+    <None Include="test.html" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugin.h">

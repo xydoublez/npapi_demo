@@ -69,14 +69,14 @@ int CDigTest::AndTo(int a, int b)
 
 void CDigTest::loadActiveX(LPCTSTR strActiveXName)
 {
-	//Initialize ATL control containment code.
-	BOOL(WINAPI *m_AtlAxWinInit)();
-	m_AtlAxWinInit = (BOOL(WINAPI *)(void))::GetProcAddress(_hWebLib, "AtlAxWinInit");
-	if (m_AtlAxWinInit == NULL)
-	{
-		//not find
-	}
-	m_AtlAxWinInit();
+	////Initialize ATL control containment code.
+	//BOOL(WINAPI *m_AtlAxWinInit)();
+	//m_AtlAxWinInit = (BOOL(WINAPI *)(void))::GetProcAddress(_hWebLib, "AtlAxWinInit");
+	//if (m_AtlAxWinInit == NULL)
+	//{
+	//	//not find
+	//}
+	//m_AtlAxWinInit();
 
 	_hSelf = this->m_hWnd;
 	
@@ -101,42 +101,22 @@ void CDigTest::loadActiveX(LPCTSTR strActiveXName)
 
 	if (!_hAtl)
 	{
-		//MessageBox(NULL, TEXT("Can not load AtlAxWin!"), szTitle, MB_OK | MB_ICONSTOP);
-		throw int(106901);
+		::MessageBox(this->m_hWnd, "李志强找不到了", "", 0);
+		//throw int(106901);
 	}
 
-	HRESULT(WINAPI *m_AtlAxGetControl) (HWND h, IUnknown** pp);
-	m_AtlAxGetControl = (HRESULT(WINAPI *) (HWND, IUnknown**))::GetProcAddress(_hWebLib, "AtlAxGetControl");
+	//HRESULT(WINAPI *m_AtlAxGetControl) (HWND h, IUnknown** pp);
+	//m_AtlAxGetControl = (HRESULT(WINAPI *) (HWND, IUnknown**))::GetProcAddress(_hWebLib, "AtlAxGetControl");
 
-	m_AtlAxGetControl(_hAtl, &_pUnk);
+	//m_AtlAxGetControl(_hAtl, &_pUnk);
 
-	_pUnk->QueryInterface(__uuidof(ActivexTest::IDemo), (LPVOID *)&_pDotNetCOMPtr);
+	//_pUnk->QueryInterface(__uuidof(ActivexTest::IDemo), (LPVOID *)&_pDotNetCOMPtr);
 
-	if (_pDotNetCOMPtr != NULL)
-	{
-		//_pDotNetCOMPtr->setAdapterDllPtr((long)_hSelf);
-	}
-	else
-	{
-		// Get the dimensions of the main window's client 
-		// area, and enumerate the child windows. Pass the 
-		// dimensions to the child windows during enumeration. 
-		RECT rcClient;
-		::GetClientRect(_hSelf, &rcClient);
-
-
-		::DestroyWindow(_hAtl);
-		_hAtl = ::CreateWindowEx(
-			WS_EX_CLIENTEDGE, \
-			TEXT("AtlAxWin"), \
-			TEXT("MSHTML:""Please register ActiveX control before using this plugin."""), \
-			WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN | WS_EX_RTLREADING, \
-			0, 0, rcClient.right, rcClient.bottom, \
-			_hSelf, \
-			NULL, \
-			NULL, \
-			NULL);
-	}
+	//if (_pDotNetCOMPtr != NULL)
+	//{
+	//	//_pDotNetCOMPtr->setAdapterDllPtr((long)_hSelf);
+	//}
+	
 	
 }
 
@@ -150,7 +130,7 @@ BOOL CDigTest::OnInitDialog()
 	pBoxOne = (CEdit*)GetDlgItem(txtEdit);
 	pBoxOne->SetWindowText("TEST1");
 
-	//loadActiveX(TEXT("ActivexTest.Demo"));
+	loadActiveX(TEXT("ActivexTest.Demo"));
 
 	// TODO:  在此添加额外的初始化
 

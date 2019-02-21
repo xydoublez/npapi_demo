@@ -66,7 +66,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)bin\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Program Files\360Chrome\Chrome\Application\11.0.1393.0\plugins\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\Mozilla Firefox\plugins\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
@@ -102,7 +102,7 @@
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <OutputFile>D:\Program Files\360Chrome\Chrome\Application\11.0.1393.0\plugins\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>nprt.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <TargetMachine>MachineX86</TargetMachine>
@@ -121,7 +121,7 @@
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <OutputFile>D:\Program Files\360Chrome\Chrome\Application\11.0.1393.0\plugins\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>nprt.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -175,6 +175,7 @@
     <ClCompile Include="plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="test.html" />
     <None Include="nprt.def" />
     <None Include="Remarks.txt" />
   </ItemGroup>
