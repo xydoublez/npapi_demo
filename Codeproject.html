@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>Scriptable Codeproject Plugin for Firefox</title>
+</head>
+
+<script>
+//getting the instance of the plugin so we can use it every time
+var PLUGIN = null;//that dosent like Chrome
+
+function init()
+{
+	try
+	{	
+		PLUGIN = document.getElementById("plugin");
+		document.getElementById("name").value = PLUGIN.Name;//getting it from WIN-API
+	}
+	catch (err) { alert(err); }
+}
+
+function GetVersion()
+{
+	try
+	{	
+		var PLUGIN = document.getElementById('plugin');
+		alert( "Version from plugin: " + PLUGIN.Name );
+	}
+	catch (err) { alert(err); }
+}
+
+function GetGreetings()
+{
+	try
+	{	
+		var name = document.getElementById("name").value;
+		PLUGIN.Name = name;//set
+		alert( "Hello " + PLUGIN.Name + " from NPAPI-plugin" );//get
+	}
+	catch (err) { alert(err); }
+}
+
+function Add()
+{
+	try
+	{	
+		//if( CheckBrowser() ) return;
+		var a1 = document.getElementById("f1").value;
+		var a2 = document.getElementById("f2").value;
+		var res = PLUGIN.AndTo(a1,a2);//we can also add numbers and strings (because of the plugin implementation)
+		alert( "Plugin Added result is: " + res );
+	}
+	catch (err) { alert(err); }
+}
+
+function SumAll()
+{
+	try
+	{	
+		//if( CheckBrowser() ) return;
+		var a1 = document.getElementById("f1").value;
+		var a2 = document.getElementById("f2").value;
+		var a3 = document.getElementById("f3").value;
+		var res = PLUGIN.Add(a1,a2,a3);//interesting is that more parameters are used
+		alert( "Plugin adds all. Result is: " + res );
+	}
+	catch (err) { alert(err); }
+}
+
+function CheckBrowser()
+{
+	var s = navigator.userAgent;//alert(s);
+	var a = s.indexOf("Apple");
+	var c = s.indexOf("Chrome");
+	var ie = s.indexOf("MSIE");
+	
+	if( c > 0 )//is there chrome
+	{
+		alert( "Chrome dont like functions with parameters.");
+		return true;
+	}	
+	
+	if( ie > 0 )//is there chrome
+	{
+		alert( "Internet Explorer dont like NPAPI at all.");
+		return true;
+	}
+	
+	if( a > 0 )//is there chrome
+	{
+		alert( "Apple Safari dont like NPAPI at all.");
+		return true;
+	}
+
+	return false;
+}
+
+
+</script>
+
+<body id="bodyId" onload="init();">
+
+<center>
+<h1>Scriptable Plugin for Firefox and Chrome</h1>
+</center>
+
+Chrome sample to call NPAPI-Plugin runtime.
+<br>
+<br>
+<!--embed type="application/codeproject" id="plugin"-->
+<embed type="application/npcodeproject" width=800 height=200 id="plugin">
+
+<br>
+
+
+<br>
+<input value="Get Version" onclick="GetVersion()" type="button">
+<br>
+Name<input id="name" type="text" size="30" maxlength="30">
+<input value="Get Greetings" onclick="GetGreetings()" type="button">
+
+<br>
+<br>
+<br><br><br><br><br><br><br>
+Field 1<input id="f1" type="text" size="30" maxlength="30" value ="2">
+Field 2<input id="f2" type="text" size="30" maxlength="30" value ="3">
+Field 3<input id="f3" type="text" size="30" maxlength="30" value ="4">
+<br>
+<input value="Add Field 1 and 2" onclick="Add()" type="button">
+<br>
+<input value="Sum all" onclick="SumAll()" type="button">
+</center>
+
+</body>
+</html>
