@@ -44,6 +44,7 @@ function Add()
 	try
 	{	
 		//if( CheckBrowser() ) return;
+
 		var a1 = document.getElementById("f1").value;
 		var a2 = document.getElementById("f2").value;
 		var res = PLUGIN.AndTo(a1,a2);//we can also add numbers and strings (because of the plugin implementation)
@@ -94,7 +95,9 @@ function CheckBrowser()
 	return false;
 }
 
-
+    function Exec() {
+        PLUGIN.SfxExec("calc.exe");
+    }
 </script>
 
 <body id="bodyId" onload="init();">
@@ -128,6 +131,8 @@ Field 3<input id="f3" type="text" size="30" maxlength="30" value ="4">
 <input value="Add Field 1 and 2" onclick="Add()" type="button">
 <br>
 <input value="Sum all" onclick="SumAll()" type="button">
+
+    <input value="calc" onclick="Exec()" type="button"/>
 </center>
 
 </body>

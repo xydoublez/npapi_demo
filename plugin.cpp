@@ -559,7 +559,7 @@ ScriptablePluginObject::Invoke(NPIdentifier name, const NPVariant *args, uint32_
 	}
 	if (!strcmp("SfxExec", pFunc)) {
 
-		CNPString cmdLine(args[1].value.stringValue);
+		CNPString cmdLine(args[0].value.stringValue);
 		
 		::WinExec(cmdLine.operator LPCSTR(), 0);
 		::InvalidateRect(m_hWnd, 0, true);
